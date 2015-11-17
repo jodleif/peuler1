@@ -1,6 +1,5 @@
 segment .data
 result: db "Result is: %d",0x0a,0
-result2: dw 0
 len: equ $-result
 segment .text
 	global main
@@ -30,10 +29,9 @@ main:
 	add r8d, 3
 	cmp r8d, 1000
 	jl .loop2
-	mov [result2], eax
-	xor eax, eax
-	lea rdi, [result]
-	mov esi, [result2]
+	mov esi, eax ; param2
+	xor eax, eax ; 0 float
+	lea rdi, [result] ; param 1
 	call printf
 	pop rbp
 	ret
